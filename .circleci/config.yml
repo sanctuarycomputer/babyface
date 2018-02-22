@@ -7,8 +7,8 @@ jobs:
       - checkout
       - run: sudo apt-get -y -qq install awscli
       - run: aws s3 sync build s3://nyc-babyface-staging/ --delete
-      #- run: aws configure set preview.cloudfront true
-      #- run: aws cloudfront create-invalidation --distribution-id E1WWN2CKZHK9Z7 --paths '/*'
+      - run: aws configure set preview.cloudfront true
+      - run: aws cloudfront create-invalidation --distribution-id E3GX5VB2R7ZLY5 --paths '/*'
 
   deploy-production:
     docker:
@@ -17,8 +17,8 @@ jobs:
       - checkout
       - run: sudo apt-get -y -qq install awscli
       - run: aws s3 sync build s3://nyc-babyface-production/ --delete
-      #- run: aws configure set preview.cloudfront true
-      #- run: aws cloudfront create-invalidation --distribution-id E1WWN2CKZHK9Z7 --paths '/*'
+      - run: aws configure set preview.cloudfront true
+      - run: aws cloudfront create-invalidation --distribution-id E1OTU8O7CVA1O7 --paths '/*'
 
 workflows:
   version: 2
