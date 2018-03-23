@@ -5,6 +5,16 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: NODE_ENV=production CI="" yarn build
       - run: sudo apt-get install python-dev python-pip
       - run: sudo pip install awscli
       - run: aws configure set preview.cloudfront true
@@ -16,6 +26,16 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: NODE_ENV=production CI="" yarn build
       - run: sudo apt-get install python-dev python-pip
       - run: sudo pip install awscli
       - run: aws configure set preview.cloudfront true
@@ -24,7 +44,7 @@ jobs:
 
 workflows:
   version: 2
-  deploy:
+  build-n-deploy:
     jobs:
       - deploy-staging:
           filters:
