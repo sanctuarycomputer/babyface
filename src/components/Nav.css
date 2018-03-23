@@ -1,0 +1,27 @@
+.Nav {
+  background-color: pink;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+}
+
+.Logo {
+  flex: 30;
+  background-color: red;
+}
+
+.Blurb {
+  flex: 40;
+}
+
+.BlurbText {
+  max-width: 300px;
+}
+
+.Links {
+  flex: 30;
+  background-color: blue;
+}

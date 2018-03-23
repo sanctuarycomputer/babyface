@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import HomeContainer from 'containers/HomeContainer';
+import { Route } from "react-router-dom";
+import Nav from 'components/Nav';
 
 class App extends Component {
+  constructor() {
+    super(...arguments);
+    this.logoWrapperRef = null;
+    this.mainInnerRef = null;
+  }
+
+  componentDidMount() {
+    this.syncMainInnerPaddingToLogoWrapper();
+    window.addEventListener("resize", this.syncMainInnerPaddingToLogoWrapper);
+  }
+
+  syncMainInnerPaddingToLogoWrapper = () => {
+    this.mainInnerRef.style.paddingLeft = `${this.logoWrapperRef.offsetWidth}px`;
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <section className="Main">
+          <div className="MainInner" ref={r => this.mainInnerRef = r}>
+            <Route path="/" component={HomeContainer} />
+          </div>
+        </section>
+        <Nav logoWrapperRef={r => this.logoWrapperRef = r} />
       </div>
     );
   }

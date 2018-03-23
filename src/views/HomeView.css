@@ -1,0 +1,18 @@
+.HomeView {
+  height: 100%;
+  width: auto;
+  white-space: nowrap;
+  overflow: auto;
+  table-layout: fixed;
+  width: 2400px;
+}
+
+.Image {
+  max-width: 300px;
+  float:left;
+}
+
+.Image2 {
+  max-width: 400px;
+  float:left;
+}
