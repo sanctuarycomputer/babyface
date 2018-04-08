@@ -1,0 +1,9 @@
+.ImageWrapper {
+  display: inline;
+  width: min-content;
+  height: 100%;
+}
+
+.ImageHero {
+  margin-right: 100px;
+}

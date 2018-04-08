@@ -1,5 +1,4 @@
 .Nav {
-  background-color: pink;
   height: 100px;
   width: 100%;
   display: flex;
@@ -10,7 +9,6 @@
 
 .Logo {
   flex: 30;
-  background-color: red;
 }
 
 .Blurb {
@@ -23,5 +21,4 @@
 
 .Links {
   flex: 30;
-  background-color: blue;
 }
