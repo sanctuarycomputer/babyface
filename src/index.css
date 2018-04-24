@@ -30,8 +30,9 @@ h1 {
 }
 
 h2 {
-  letter-spacing: 0.65px;
-  font-size: 0.9rem;
+  letter-spacing: 0.42px;
+  line-height: 16px;
+  font-size: 12px;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -39,6 +40,14 @@ h2 {
 h3 {
   letter-spacing: 0.65px;
   font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+h4 {
+  letter-spacing: 0.88px;
+  font-size: 25px;
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 400;

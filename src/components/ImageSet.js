@@ -5,25 +5,31 @@ import get from 'utils/get';
 import Store from 'state/Store';
 
 export default class ImageSet extends Component {
-  componentDidMount() {
-    Store.subscribe(() => this.syncSizes());
-    this.syncSizes();
+  constructor() {
+    super(...arguments);
+
+    const { midSectionWidth } = Store.getState();
+    this.state = { midSectionWidth };
+
+    this.unsubscribe = Store.subscribe(() => {
+      const { midSectionWidth } = Store.getState();
+      this.setState({ midSectionWidth });
+    });
   }
 
-  syncSizes = () => {
-    this.heroImageRef.style.width = `${Store.getState().midSectionWidth - 100}px`;
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {
     return (get(this, 'props.images', [])).map((image, index) => {
-
       if (!index) {
         return (
           <img
             key={index}
             src={get(image, 'fields.file.url')}
             alt={get(image, 'fields.file.fileName', 'Image')}
-            ref={r => this.heroImageRef = r}
+            style={{ width: `${(this.state.midSectionWidth - 100)}px` }}
             className="ImageHero"
           />
         );

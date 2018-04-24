@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Nav.css';
 import get from 'utils/get';
-import Store from 'state/Store';
+import { toggleCaseStudiesMenu } from 'state/actions';
 
 export default class Nav extends Component {
   render() {
@@ -17,9 +17,9 @@ export default class Nav extends Component {
           <h2 className="BlurbText">{get(this, 'props.content.fields.blurb', '')}</h2>
         </div>
         <div className="Links">
-          <NavLink to="/studies">
-            <h2>Case Studies</h2>
-          </NavLink>
+          <div onClick={toggleCaseStudiesMenu}>
+            <h2 className="CaseStudiesLink">Case Studies</h2>
+          </div>
           <NavLink to="/about">
             <h2>About</h2>
           </NavLink>

@@ -5,10 +5,17 @@
   flex-direction: row;
   position: fixed;
   bottom: 0;
+  padding-top: 16px;
 }
 
 .Logo {
   flex: 30;
+  text-align: center;
+}
+
+.Logo a {
+  color: white;
+  text-decoration: none;
 }
 
 .Blurb {
@@ -16,9 +23,18 @@
 }
 
 .BlurbText {
-  max-width: 300px;
+  max-width: 240px;
 }
 
 .Links {
   flex: 30;
+}
+
+.Links a {
+  color: white;
+  text-decoration: none;
+}
+
+.CaseStudiesLink {
+  cursor: pointer;
 }

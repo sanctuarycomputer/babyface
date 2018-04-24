@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from "react-router-dom";
 import Nav from 'components/Nav';
+import CaseStudiesMenu from 'components/CaseStudiesMenu';
 import ContentfulData from 'lib/ContentfulData';
 
 import HomeContainer from 'containers/HomeContainer';
@@ -8,7 +9,12 @@ import AboutContainer from 'containers/AboutContainer';
 import StudiesContainer from 'containers/StudiesContainer';
 import StudiesShowContainer from 'containers/StudiesShowContainer';
 
-import { setMidsectionWidth } from 'state/actions';
+import {
+  setMidsectionWidth,
+  setPaddingWidth,
+  loadHome,
+  loadStudies,
+} from 'state/actions';
 
 class App extends Component {
   constructor() {
@@ -26,6 +32,9 @@ class App extends Component {
     }).then(res => {
       this.setState({ content: res.items[0] });
     });
+
+    loadHome();
+    loadStudies();
   }
 
   componentDidMount() {
@@ -35,6 +44,7 @@ class App extends Component {
 
   syncSizes = () => {
     this.mainInnerRef.style.paddingLeft = `${this.logoWrapperRef.offsetWidth}px`;
+    setPaddingWidth(this.logoWrapperRef.offsetWidth);
     setMidsectionWidth(this.blurbWrapperRef.offsetWidth);
   }
 
@@ -75,6 +85,7 @@ class App extends Component {
           blurbWrapperRef={r => this.blurbWrapperRef = r}
           content={this.state.content}
         />
+        <CaseStudiesMenu />
       </div>
     );
   }

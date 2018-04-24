@@ -4,17 +4,11 @@ function createStore(reducer) {
   let state;
   let listeners = []
 
-  function getState() {
-    return state
-  }
+  function getState() { return state }
 
   function subscribe(listener) {
     listeners.push(listener)
-
-    return function unsubscribe() {
-      let index = listeners.indexOf(listener)
-      listeners.splice(listener)
-    }
+    return function unsubscribe() { listeners.splice(listener) }
   }
 
   function dispatch(action) {
@@ -23,7 +17,6 @@ function createStore(reducer) {
   }
 
   dispatch({})
-
   return { dispatch, subscribe, getState }
 }
 
