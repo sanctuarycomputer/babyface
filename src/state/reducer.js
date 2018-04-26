@@ -7,8 +7,13 @@ import {
   LOAD_HOME,
 } from './actions';
 
+import Constants from 'lib/Constants';
+
 const initialState = {
-  nav: {},
+  nav: {
+    blurbMode: Constants.NavBlurbMode.HOME,
+    meta: null
+  },
   midSectionWidth: 0,
   paddingWidth: 0,
   showCaseStudiesMenu: false,

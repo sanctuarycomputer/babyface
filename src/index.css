@@ -38,11 +38,12 @@ h2 {
 }
 
 h3 {
-  letter-spacing: 0.65px;
-  font-size: 0.9rem;
+  letter-spacing: 0.42px;
+  font-size: 12px;
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 400;
+  line-height: 20px;
 }
 
 h4 {
@@ -81,3 +82,15 @@ section.Main {
   align-items: flex-end;
 }
 
+table {
+  width: 340px;
+  margin-bottom: 60px;
+  font-size:12px;
+  letter-spacing: 0.42px;
+}
+table thead {
+  text-align: left;
+}
+table th {
+  padding-bottom: 20px;
+}

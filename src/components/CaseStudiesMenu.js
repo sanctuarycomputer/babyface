@@ -15,12 +15,11 @@ export default class CaseStudiesMenu extends Component {
       midSectionWidth,
       studies,
     } = Store.getState();
-
     this.state = {
       active: showCaseStudiesMenu,
       paddingWidth,
       midSectionWidth,
-      studies,
+      studies: studies.filter(study => get(study, 'fields.featured', false))
     };
 
     Store.subscribe(() => {
@@ -34,7 +33,7 @@ export default class CaseStudiesMenu extends Component {
         active: showCaseStudiesMenu,
         paddingWidth,
         midSectionWidth,
-        studies,
+        studies: studies.filter(study => get(study, 'fields.featured', false))
       });
     });
   }
@@ -52,6 +51,8 @@ export default class CaseStudiesMenu extends Component {
     } else {
       image = get(Store.getState(), 'homePage.fields.images', [])[0];
     }
+
+    if (!image) return null;
 
     return (
       <img

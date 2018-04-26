@@ -38,3 +38,10 @@
 .CaseStudiesLink {
   cursor: pointer;
 }
+
+.Blurb .EmailAddress {
+  color: white;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.42px;
+}

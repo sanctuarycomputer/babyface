@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./StudiesShowView.css";
 import ImageSet from 'components/ImageSet';
 import get from 'utils/get';
+import Markdown from 'react-markdown';
 
 export default class StudiesShowView extends Component {
   render() {
@@ -11,6 +12,7 @@ export default class StudiesShowView extends Component {
     return (
       <div className="StudiesShowView ImageGallery">
         <ImageSet images={get(model, 'fields.images', [])} />
+        <Markdown source={get(model, 'fields.credits', '')} />
       </div>
     );
   }

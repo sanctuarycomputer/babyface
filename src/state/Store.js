@@ -8,7 +8,10 @@ function createStore(reducer) {
 
   function subscribe(listener) {
     listeners.push(listener)
-    return function unsubscribe() { listeners.splice(listener) }
+    return function unsubscribe() {
+      const index = listeners.indexOf(listener)
+      if (index > -1) listeners.splice(index, 1)
+    }
   }
 
   function dispatch(action) {
