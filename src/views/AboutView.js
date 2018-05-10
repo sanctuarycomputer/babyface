@@ -47,8 +47,8 @@ export default class AboutView extends Component {
         <MediaQuery query="(min-device-width: 800px)">
           { hovered ? (
             <img
-              src={get(hovered.fields.images[0], 'fields.file.url')}
-              alt={get(hovered.fields.images[0], 'fields.file.fileName', 'Image')}
+              src={get(hovered.fields.image, 'fields.file.url')}
+              alt={get(hovered.fields.image, 'fields.file.fileName', 'Image')}
               className="AboutKeyImageHero"
             />
           ) : null }

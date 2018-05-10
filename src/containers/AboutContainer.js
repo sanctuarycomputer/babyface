@@ -25,7 +25,7 @@ class AboutContainer extends ContainerBase {
         include: 2,
       }).then(res => get(res, 'items', [])[0]),
       ContentfulData.getEntries({
-        content_type: 'study',
+        content_type: 'project',
         include: 2
       }).then(res => res.items)
     ]).then(([aboutPage, studies]) => {
