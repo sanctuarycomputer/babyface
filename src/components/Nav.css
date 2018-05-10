@@ -1,16 +1,21 @@
 .Nav {
-  background-color: pink;
   height: 100px;
   width: 100%;
   display: flex;
   flex-direction: row;
   position: fixed;
   bottom: 0;
+  padding-top: 16px;
 }
 
 .Logo {
   flex: 30;
-  background-color: red;
+  text-align: center;
+}
+
+.Logo a {
+  color: white;
+  text-decoration: none;
 }
 
 .Blurb {
@@ -18,10 +23,25 @@
 }
 
 .BlurbText {
-  max-width: 300px;
+  max-width: 240px;
 }
 
 .Links {
   flex: 30;
-  background-color: blue;
+}
+
+.Links a {
+  color: white;
+  text-decoration: none;
+}
+
+.CaseStudiesLink {
+  cursor: pointer;
+}
+
+.Blurb .EmailAddress {
+  color: white;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.42px;
 }

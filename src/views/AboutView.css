@@ -1,0 +1,46 @@
+.AboutView {
+  min-height: 100%;
+  width: auto;
+  white-space: nowrap;
+  overflow: auto;
+  table-layout: fixed;
+  flex: 1;
+  padding-bottom: var(--navHeight);
+
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.StudyLink {
+  cursor: zoom-in;
+}
+
+.Descriptor {
+  width: 35%;
+  display: inline-block;
+}
+
+.CityDescriptor {
+  width: 22%;
+  display: inline-block;
+}
+
+.RoleDescriptor {
+  width: 21%;
+  display: inline-block;
+}
+
+.DateDescriptor {
+  width: 22%;
+  display: inline-block;
+}
+
+.AboutKeyImageHero {
+  position: fixed;
+  left: 10%;
+  width: 40%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}

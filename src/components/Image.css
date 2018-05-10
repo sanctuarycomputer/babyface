@@ -1,0 +1,11 @@
+.Image {
+  height: 100%;
+  float:left;
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+  margin-right: 100px;
+}
+
+.Loaded {
+  opacity: 1;
+}

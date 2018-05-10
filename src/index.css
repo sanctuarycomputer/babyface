@@ -2,7 +2,14 @@ html {
   height: 100%;
   -webkit-font-smoothing: antialiased;
   background-color: black;
+}
+
+* {
   box-sizing: border-box;
+}
+
+:root {
+  --navHeight: 100px;
 }
 
 body {
@@ -23,10 +30,28 @@ h1 {
 }
 
 h2 {
-  letter-spacing: 0.65px;
-  font-size: 0.9rem;
+  letter-spacing: 0.42px;
+  line-height: 16px;
+  font-size: 12px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+h3 {
+  letter-spacing: 0.42px;
+  font-size: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+h4 {
+  letter-spacing: 0.88px;
+  font-size: 25px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 400;
 }
 
 #root {
@@ -41,11 +66,31 @@ h2 {
 
 section.Main {
   flex: 1;
-  background-color: wheat;
   display: flex;
 }
 
 .MainInner {
-  background-color: green;
-  overflow-y: hidden;
+  overflow-y: scroll;
+  min-width: 100%;
+}
+
+.ImageGallery {
+  height: 100%;
+  width: auto;
+  padding-bottom: var(--navHeight);
+  display: flex;
+  align-items: flex-end;
+}
+
+table {
+  width: 340px;
+  margin-bottom: 60px;
+  font-size:12px;
+  letter-spacing: 0.42px;
+}
+table thead {
+  text-align: left;
+}
+table th {
+  padding-bottom: 20px;
 }
