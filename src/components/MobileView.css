@@ -1,0 +1,59 @@
+.MobileView {
+  width: 100vw;
+}
+
+nav.MobileNav, nav.MobileBottomNav {
+  padding: 30px 0px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+}
+
+nav.MobileBottomNav {
+  bottom: 0;
+}
+
+nav.MobileNav h1, nav.MobileBottomNav h3 {
+  font-size: 1rem;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+}
+
+.ImageHolder {
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 90px 20px;
+  z-index: 2;
+}
+
+.ImageHolder .MobileImage {
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.NameScroll {
+  z-index: 3;
+  width: 100%;
+  position: relative;
+}
+
+.NameScroll .Item {
+  width: 100vw;
+  height: 101vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}

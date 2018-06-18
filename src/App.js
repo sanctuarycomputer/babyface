@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Switch, Route } from "react-router-dom";
 import Nav from 'components/Nav';
 import CaseStudiesMenu from 'components/CaseStudiesMenu';
@@ -9,12 +9,17 @@ import AboutContainer from 'containers/AboutContainer';
 import StudiesContainer from 'containers/StudiesContainer';
 import StudiesShowContainer from 'containers/StudiesShowContainer';
 
+import MediaQuery from 'react-responsive';
+import MobileView from 'components/MobileView';
+
 import {
   setMidsectionWidth,
   setPaddingWidth,
   loadHome,
   loadStudies,
 } from 'state/actions';
+
+var difference = function (a, b) { return Math.abs(a - b); }
 
 class App extends Component {
   constructor() {
@@ -23,6 +28,27 @@ class App extends Component {
     this.mainInnerRef = null;
     this.blurbWrapperRef = null;
     this.state = { content: null };
+
+    this.prevScrollDelta = { x: 0, y: 0 };
+  }
+
+  didScroll = e => {
+    const mainInner = document.querySelector(".MainInner");
+
+    if (mainInner) {
+      e.preventDefault();
+
+      const { x, y } = this.prevScrollDelta;
+      this.prevScrollDelta = { x: e.deltaX, y: e.deltaY };
+
+      const xChange = difference(x, this.prevScrollDelta.x);
+      const yChange = difference(y, this.prevScrollDelta.y);
+
+      if (yChange > xChange) {
+        var delta = e.detail ? e.detail * (-120) : e.wheelDelta;
+        mainInner.scrollLeft -= (delta);
+      }
+    }
   }
 
   componentWillMount() {
@@ -30,19 +56,24 @@ class App extends Component {
       content_type: 'homePage',
       include: 2,
     }).then(res => {
-      this.setState({ content: res.items[0] });
+      const homePage = res.items[0];
+      this.setState({ content: homePage });
+      loadStudies(homePage.fields.studies);
     });
-
     loadHome();
-    loadStudies();
   }
 
   componentDidMount() {
     this.syncSizes();
     window.addEventListener("resize", this.syncSizes);
+    window.addEventListener("wheel", this.didScroll);
   }
 
   syncSizes = () => {
+    if (!this.mainInnerRef) return;
+    if (!this.logoWrapperRef) return;
+    if (!this.blurbWrapperRef) return;
+
     this.mainInnerRef.style.paddingLeft = `${this.logoWrapperRef.offsetWidth}px`;
     setPaddingWidth(this.logoWrapperRef.offsetWidth);
     setMidsectionWidth(this.blurbWrapperRef.offsetWidth);
@@ -50,43 +81,56 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <section className="Main">
-          <div className="MainInner" ref={r => this.mainInnerRef = r}>
-            {
-              this.state.content ?
-              <Switch>
-                <Route
-                  path="/"
-                  component={HomeContainer}
-                  exact
-                />
-                <Route
-                  path="/about"
-                  component={AboutContainer}
-                  exact
-                />
-                <Route
-                  path="/studies"
-                  component={StudiesContainer}
-                  exact
-                />
-                <Route
-                  path="/studies/:slug"
-                  component={StudiesShowContainer}
-                />
-              </Switch> :
-              null
-            }
+      <Fragment>
+        <MediaQuery query="(max-width: 700px)">
+          {
+            this.state.content ?
+            <MobileView content={this.state.content} /> :
+            null
+          }
+        </MediaQuery>
+
+        <MediaQuery query="(min-width: 700px)">
+          <div className="App">
+            <section className="Main">
+              <div className="MainInner" ref={r => this.mainInnerRef = r}>
+                {
+                  this.state.content ?
+                  <Switch>
+                    <Route
+                      path="/"
+                      component={HomeContainer}
+                      exact
+                    />
+                    <Route
+                      path="/about"
+                      component={AboutContainer}
+                      exact
+                    />
+                    <Route
+                      path="/studies"
+                      component={StudiesContainer}
+                      exact
+                    />
+                    <Route
+                      path="/studies/:slug"
+                      component={StudiesShowContainer}
+                    />
+                  </Switch> :
+                  null
+                }
+              </div>
+            </section>
+
+              <Nav
+                logoWrapperRef={r => this.logoWrapperRef = r}
+                blurbWrapperRef={r => this.blurbWrapperRef = r}
+                content={this.state.content}
+              />
+              <CaseStudiesMenu />
           </div>
-        </section>
-        <Nav
-          logoWrapperRef={r => this.logoWrapperRef = r}
-          blurbWrapperRef={r => this.blurbWrapperRef = r}
-          content={this.state.content}
-        />
-        <CaseStudiesMenu />
-      </div>
+        </MediaQuery>
+      </Fragment>
     );
   }
 }

@@ -48,14 +48,9 @@ export const loadHome = () => {
   });
 }
 
-export const loadStudies = () => {
-  ContentfulData.getEntries({
-    content_type: 'study',
-    include: 2
-  }).then(res => {
-    Store.dispatch({
-      type: LOAD_STUDIES,
-      payload: res.items
-    });
+export const loadStudies = studies => {
+  Store.dispatch({
+    type: LOAD_STUDIES,
+    payload: studies
   });
 }

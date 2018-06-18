@@ -3,7 +3,6 @@ import "./AboutView.css";
 import get from 'utils/get';
 import Markdown from 'react-markdown';
 import MediaQuery from 'react-responsive';
-import { Link } from "react-router-dom";
 
 const renderLinks = (studies, onMouseEnter, onMouseLeave) => {
   return (studies || []).map((study, index) => {
@@ -52,7 +51,7 @@ export default class AboutView extends Component {
               className="AboutKeyImageHero"
             />
           ) : null }
-          {renderLinks(model.studies, this.mouseEnterStudy, this.mouseLeaveStudy)}
+          {renderLinks(model.aboutPage.fields.projects, this.mouseEnterStudy, this.mouseLeaveStudy)}
         </MediaQuery>
       </div>
     );
