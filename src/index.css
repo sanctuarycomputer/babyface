@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  cursor: url(./cursor2.png), help;
   height: 100%;
   margin: 0;
   padding: 0;

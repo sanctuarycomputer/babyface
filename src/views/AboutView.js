@@ -36,6 +36,7 @@ export default class AboutView extends Component {
     if (model.isError) return <h1>Error</h1>
 
     const { hovered } = this.state;
+
     return (
       <div className="AboutView">
         <MediaQuery query="(max-device-width: 800px)">
@@ -45,9 +46,8 @@ export default class AboutView extends Component {
 
         <MediaQuery query="(min-device-width: 800px)">
           { hovered ? (
-            <img
-              src={get(hovered.fields.image, 'fields.file.url')}
-              alt={get(hovered.fields.image, 'fields.file.fileName', 'Image')}
+            <div
+              style={{backgroundImage: `url(${get(hovered.fields.image, 'fields.file.url')})`}}
               className="AboutKeyImageHero"
             />
           ) : null }

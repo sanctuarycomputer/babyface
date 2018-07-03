@@ -54,9 +54,13 @@
 
 .AboutKeyImageHero {
   position: fixed;
+  height: 60%;
   left: 10%;
   width: 40%;
   top: 50%;
   transform: translateY(-50%);
   z-index: -1;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
