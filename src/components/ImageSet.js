@@ -26,7 +26,7 @@ export default class ImageSet extends Component {
       if (!index) {
         return (
           <img
-            key={index}
+            key={get(image, 'sys.id')}
             src={get(image, 'fields.file.url')}
             alt={get(image, 'fields.file.fileName', 'Image')}
             style={{ width: `${(this.state.midSectionWidth - 100)}px` }}
