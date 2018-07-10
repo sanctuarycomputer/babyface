@@ -5,6 +5,7 @@ import {
   TOGGLE_CASE_STUDIES_MENU,
   LOAD_STUDIES,
   LOAD_HOME,
+  CONSIDERED_LOADING,
 } from './actions';
 
 import Constants from 'lib/Constants';
@@ -18,7 +19,8 @@ const initialState = {
   paddingWidth: 0,
   showCaseStudiesMenu: false,
   homePage: null,
-  studies: []
+  studies: [],
+  consideredLoading: true,
 };
 
 export default function reducer(state = initialState, action) {
@@ -35,6 +37,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, homePage: action.payload }
     case LOAD_STUDIES:
       return { ...state, studies: action.payload }
+    case CONSIDERED_LOADING:
+      return { ...state, consideredLoading: action.payload }
 
     default: return state
   }

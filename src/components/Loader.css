@@ -1,0 +1,53 @@
+.Loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  color: black;
+  z-index: 1;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.Loader.loaded {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out 300ms;
+}
+
+.Loader span {
+  font-size: 4rem;
+  font-family: 'Scheherazade';
+
+  font-size: 6rem;
+  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  -webkit-animation: flickerAnimation 5s infinite;
+  -moz-animation: flickerAnimation 5s infinite;
+  -o-animation: flickerAnimation 5s infinite;
+  animation: flickerAnimation 5s infinite;
+}
+
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0.6; }
+  100% { opacity:1; }
+}
+@-o-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0.6; }
+  100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0.6; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0.6; }
+  100% { opacity:1; }
+}

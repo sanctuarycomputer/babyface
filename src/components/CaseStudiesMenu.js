@@ -55,11 +55,21 @@ export default class CaseStudiesMenu extends Component {
     if (!image) return null;
 
     return (
-      <img
-        src={get(image, 'fields.file.url')}
-        alt={get(image, 'fields.file.fileName', 'Image')}
+      <div
+        key={get(image, 'sys.id')}
+        style={{
+          height: '90%',
+          backgroundImage: `url(${get(image, 'fields.file.url')})`,
+        }}
         className="KeyImageHero"
-      />
+      >
+        <img
+          style={{
+            width: `${(this.state.midSectionWidth - 100)}px`,
+          }}
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        />
+      </div>
     );
   }
 

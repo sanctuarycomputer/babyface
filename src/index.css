@@ -13,7 +13,10 @@ html {
 }
 
 body {
-  cursor: url(./cursor2.png), help;
+  cursor: url(./yinyang.png) 0 0, default;
+  cursor: url(./yinyang.svg) 0 0, pointer; /* FF */
+  cursor: -webkit-image-set(url(./yinyang.png) 1x, url(./yinyang@2x.png) 2x) 0 0, pointer; /* Webkit */
+
   height: 100%;
   margin: 0;
   padding: 0;
@@ -84,7 +87,7 @@ section.Main {
 }
 
 table {
-  width: 340px;
+  width: 400px;
   margin-bottom: 60px;
   font-size:12px;
   letter-spacing: 0.42px;
@@ -94,4 +97,8 @@ table thead {
 }
 table th {
   padding-bottom: 20px;
+}
+table td {
+  padding-bottom: 6px;
+  padding-right: 6px;
 }

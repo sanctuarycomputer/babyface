@@ -9,7 +9,7 @@ export default class ImageSet extends Component {
     super(...arguments);
 
     const { midSectionWidth } = Store.getState();
-    this.state = { midSectionWidth };
+    this.state = { midSectionWidth, hidden: true };
 
     this.unsubscribe = Store.subscribe(() => {
       const { midSectionWidth } = Store.getState();
@@ -17,13 +17,40 @@ export default class ImageSet extends Component {
     });
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ hidden: false });
+    }, 300);
+  }
+
   componentWillUnmount() {
     this.unsubscribe();
   }
 
   render() {
+    let imageWrapperClasses = "ImageWrapper";
+    if (this.state.hidden) imageWrapperClasses = `${imageWrapperClasses} hidden`;
+
     return (get(this, 'props.images', [])).map((image, index) => {
       if (!index) {
+        return (
+          <div
+            key={get(image, 'sys.id')}
+            style={{
+              height: '90%',
+              backgroundImage: `url(${get(image, 'fields.file.url')})`,
+            }}
+            className="ImageHero"
+          >
+            <img
+              style={{
+                width: `${(this.state.midSectionWidth - 100)}px`,
+              }}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            />
+          </div>
+        );
+
         return (
           <img
             key={get(image, 'sys.id')}
@@ -43,7 +70,7 @@ export default class ImageSet extends Component {
       });
 
       return (
-        <div className="ImageWrapper" key={index} style={styles}>
+        <div className={imageWrapperClasses} key={index} style={styles}>
           <Image
             src={get(image, 'fields.file.url')}
             alt={get(image, 'fields.file.fileName', 'Image')}

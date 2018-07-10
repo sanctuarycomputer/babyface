@@ -7,6 +7,7 @@ export const SET_PADDING_WIDTH = 'SET_PADDING_WIDTH';
 export const TOGGLE_CASE_STUDIES_MENU = 'TOGGLE_CASE_STUDIES_MENU';
 export const LOAD_STUDIES = 'LOAD_STUDIES';
 export const LOAD_HOME = 'LOAD_HOME';
+export const CONSIDERED_LOADING = 'CONSIDERED_LOADING';
 
 export const setupNav = payload => {
   return Store.dispatch({
@@ -35,7 +36,6 @@ export const toggleCaseStudiesMenu = () => {
   });
 }
 
-
 export const loadHome = () => {
   ContentfulData.getEntries({
     content_type: 'homePage',
@@ -52,5 +52,12 @@ export const loadStudies = studies => {
   Store.dispatch({
     type: LOAD_STUDIES,
     payload: studies
+  });
+}
+
+export const consideredLoading = payload => {
+  return Store.dispatch({
+    type: CONSIDERED_LOADING,
+    payload,
   });
 }

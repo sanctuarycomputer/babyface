@@ -11,6 +11,7 @@ import StudiesShowContainer from 'containers/StudiesShowContainer';
 
 import MediaQuery from 'react-responsive';
 import MobileView from 'components/MobileView';
+import Loader from 'components/Loader';
 
 import {
   setMidsectionWidth,
@@ -82,6 +83,8 @@ class App extends Component {
   render() {
     return (
       <Fragment>
+        <Loader />
+
         <MediaQuery query="(max-width: 700px)">
           {
             this.state.content ?

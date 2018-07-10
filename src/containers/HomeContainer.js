@@ -1,13 +1,15 @@
 import ContainerBase from "lib/ContainerBase";
 import ContentfulData from 'lib/ContentfulData';
 import get from 'utils/get';
-import { setupNav } from 'state/actions';
+import { setupNav, consideredLoading } from 'state/actions';
 import Constants from 'lib/Constants';
 
 class HomeContainer extends ContainerBase {
   view = import("views/HomeView");
 
   model = () => {
+    consideredLoading(true);
+
     setupNav({
       blurbMode: Constants.NavBlurbMode.HOME,
       meta: null,
@@ -16,7 +18,12 @@ class HomeContainer extends ContainerBase {
     return ContentfulData.getEntries({
       content_type: 'homePage',
       include: 2,
-    }).then(res => get(res, 'items', [])[0]);
+    }).then(res => {
+      consideredLoading(false);
+      return get(res, 'items', [])[0];
+    }).catch(() => {
+      consideredLoading(false);
+    });
   }
 }
 

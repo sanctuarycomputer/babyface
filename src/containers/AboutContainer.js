@@ -5,6 +5,7 @@ import Store from 'state/Store';
 import {
   toggleCaseStudiesMenu,
   setupNav,
+  consideredLoading,
 } from 'state/actions';
 import Constants from 'lib/Constants';
 
@@ -12,6 +13,8 @@ class AboutContainer extends ContainerBase {
   view = import("views/AboutView");
 
   model = () => {
+    consideredLoading(true);
+
     if (Store.getState().showCaseStudiesMenu) toggleCaseStudiesMenu();
 
     setupNav({
@@ -25,7 +28,10 @@ class AboutContainer extends ContainerBase {
         include: 2,
       }).then(res => get(res, 'items', [])[0]),
     ]).then(([aboutPage]) => {
+      consideredLoading(false);
       return { aboutPage };
+    }).catch(() => {
+      consideredLoading(false);
     });
   }
 }
