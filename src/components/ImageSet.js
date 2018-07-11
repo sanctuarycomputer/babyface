@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
 import './ImageSet.css';
 import Image from 'components/Image';
+import Video from 'components/Video';
 import get from 'utils/get';
 import Store from 'state/Store';
 
 export default class ImageSet extends Component {
   constructor() {
     super(...arguments);
-
-    const { midSectionWidth } = Store.getState();
-    this.state = { midSectionWidth, hidden: true };
-
+    const { midSectionWidth, keyImage } = Store.getState();
+    this.state = { midSectionWidth, keyImage };
     this.unsubscribe = Store.subscribe(() => {
-      const { midSectionWidth } = Store.getState();
-      this.setState({ midSectionWidth });
+      const { midSectionWidth, keyImage } = Store.getState();
+      this.setState({ midSectionWidth, keyImage });
     });
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ hidden: false });
-    }, 300);
   }
 
   componentWillUnmount() {
@@ -29,16 +22,16 @@ export default class ImageSet extends Component {
 
   render() {
     let imageWrapperClasses = "ImageWrapper";
-    if (this.state.hidden) imageWrapperClasses = `${imageWrapperClasses} hidden`;
+    if (this.props.loading) imageWrapperClasses = `${imageWrapperClasses} hidden`;
 
     return (get(this, 'props.images', [])).map((image, index) => {
       if (!index) {
         return (
           <div
-            key={get(image, 'sys.id')}
+            key={get(this.state, 'keyImage.sys.id')}
             style={{
               height: '90%',
-              backgroundImage: `url(${get(image, 'fields.file.url')})`,
+              backgroundImage: `url(${get(this.state.keyImage, 'fields.file.url')})`,
             }}
             className="ImageHero"
           >
@@ -51,15 +44,6 @@ export default class ImageSet extends Component {
           </div>
         );
 
-        return (
-          <img
-            key={get(image, 'sys.id')}
-            src={get(image, 'fields.file.url')}
-            alt={get(image, 'fields.file.fileName', 'Image')}
-            style={{ width: `${(this.state.midSectionWidth - 100)}px` }}
-            className="ImageHero"
-          />
-        );
       }
 
       const styles = {};
@@ -68,6 +52,17 @@ export default class ImageSet extends Component {
         if (splat.length !== 2) return;
         styles[splat[0].trim()] = splat[1].trim();
       });
+
+      if (image.fields.file.contentType === 'video/mp4') {
+        return (
+          <div className={imageWrapperClasses} key={index} style={styles}>
+            <Video
+              src={get(image, 'fields.file.url')}
+              alt={get(image, 'fields.file.fileName', 'Image')}
+            />
+          </div>
+        );
+      }
 
       return (
         <div className={imageWrapperClasses} key={index} style={styles}>

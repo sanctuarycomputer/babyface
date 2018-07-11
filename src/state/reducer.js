@@ -6,6 +6,7 @@ import {
   LOAD_STUDIES,
   LOAD_HOME,
   CONSIDERED_LOADING,
+  SET_KEY_IMAGE
 } from './actions';
 
 import Constants from 'lib/Constants';
@@ -21,6 +22,7 @@ const initialState = {
   homePage: null,
   studies: [],
   consideredLoading: true,
+  keyImage: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -39,6 +41,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, studies: action.payload }
     case CONSIDERED_LOADING:
       return { ...state, consideredLoading: action.payload }
+    case SET_KEY_IMAGE:
+      return { ...state, keyImage: action.payload }
 
     default: return state
   }

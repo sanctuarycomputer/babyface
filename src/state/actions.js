@@ -8,10 +8,18 @@ export const TOGGLE_CASE_STUDIES_MENU = 'TOGGLE_CASE_STUDIES_MENU';
 export const LOAD_STUDIES = 'LOAD_STUDIES';
 export const LOAD_HOME = 'LOAD_HOME';
 export const CONSIDERED_LOADING = 'CONSIDERED_LOADING';
+export const SET_KEY_IMAGE = 'SET_KEY_IMAGE';
 
 export const setupNav = payload => {
   return Store.dispatch({
     type: SETUP_NAV,
+    payload,
+  });
+}
+
+export const setKeyImage = payload => {
+  return Store.dispatch({
+    type: SET_KEY_IMAGE,
     payload,
   });
 }

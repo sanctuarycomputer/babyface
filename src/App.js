@@ -11,7 +11,8 @@ import StudiesShowContainer from 'containers/StudiesShowContainer';
 
 import MediaQuery from 'react-responsive';
 import MobileView from 'components/MobileView';
-import Loader from 'components/Loader';
+import loadImage from 'utils/loadImage';
+import get from 'utils/get';
 
 import {
   setMidsectionWidth,
@@ -60,6 +61,16 @@ class App extends Component {
       const homePage = res.items[0];
       this.setState({ content: homePage });
       loadStudies(homePage.fields.studies);
+
+      get(homePage, 'fields.studies', []).map(study => {
+        let url = get(
+          get(study, 'fields.images', [])[0],
+          'fields.file.url',
+          ''
+        );
+        return loadImage(url);
+      });
+
     });
     loadHome();
   }
@@ -83,7 +94,9 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Loader />
+        {
+          /*<Loader />*/
+        }
 
         <MediaQuery query="(max-width: 700px)">
           {

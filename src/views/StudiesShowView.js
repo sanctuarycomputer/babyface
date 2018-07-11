@@ -10,26 +10,24 @@ export default class StudiesShowView extends Component {
     super(...arguments);
     const { consideredLoading } = Store.getState();
     this.state = { consideredLoading };
-    Store.subscribe(() => {
-      if (this.ignore) return;
-
+    this.unsubscribe = Store.subscribe(() => {
       const { consideredLoading } = Store.getState();
       this.setState({ consideredLoading });
     });
   }
 
   componentWillUnmount() {
-    this.ignore = true;
+    this.unsubscribe();
   }
 
   render() {
     const { model } = this.props;
     if (model.isError) return <h1>Error</h1>
-    if (this.state.consideredLoading) return null;
+    //if (this.state.consideredLoading) return null;
 
     return (
       <div className="StudiesShowView ImageGallery">
-        <ImageSet images={get(model, 'fields.images', [])} />
+        <ImageSet images={get(model, 'fields.images', [])} loading={this.state.consideredLoading} />
         <Markdown source={get(model, 'fields.credits', '')} />
       </div>
     );

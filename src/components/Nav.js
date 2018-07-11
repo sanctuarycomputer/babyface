@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Nav.css';
 import get from 'utils/get';
@@ -27,11 +27,21 @@ export default class Nav extends Component {
         );
       case Constants.NavBlurbMode.DETAILS:
         return (
-          <div>
-            <h2>{get(this.state.meta, 'fields.name')}</h2>
-            <h3>
-              {get(this.state.meta, 'fields.role')}, {get(this.state.meta, 'fields.date')}
-            </h3>
+          <div className="DetailsSplit">
+            <div>
+              <h2>{get(this.state.meta, 'fields.name')}</h2>
+              <a href={get(this.state.meta, 'fields.url')} target={'_blank'}>
+                <h3>{get(this.state.meta, 'fields.url')}</h3>
+              </a>
+            </div>
+            <div className={'Secondary'}>
+              <h3>
+                {get(this.state.meta, 'fields.role')}
+              </h3>
+              <h3>
+                {get(this.state.meta, 'fields.date')}
+              </h3>
+            </div>
           </div>
         );
       case Constants.NavBlurbMode.HOME:

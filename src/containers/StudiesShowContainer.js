@@ -6,23 +6,19 @@ import {
   toggleCaseStudiesMenu,
   setupNav,
   consideredLoading,
+  setKeyImage,
 } from 'state/actions';
 import Constants from 'lib/Constants';
-
-const loadImage = url => {
-  return new Promise(resolve => {
-    const img = new window.Image();
-    img.onload = resolve;
-    img.onerror = resolve;
-    img.src = url;
-  });
-}
+import loadImage from 'utils/loadImage';
 
 class StudiesContainer extends ContainerBase {
   view = import("views/StudiesShowView");
 
   model = () => {
     consideredLoading(true);
+
+    const mainInner = document.querySelector(".MainInner");
+    if (mainInner) mainInner.scrollLeft = 0;
 
     if (Store.getState().showCaseStudiesMenu) toggleCaseStudiesMenu();
 
@@ -41,15 +37,22 @@ class StudiesContainer extends ContainerBase {
         meta: study,
       });
 
-      let imagesLoaded = Promise.all(get(study, 'fields.images', []).map(image => {
+      setKeyImage(
+        get(study, 'fields.images', [])[0]
+      );
+
+      let imagesLoaded = Promise.all(get(study, 'fields.images', []).filter(media => {
+        return (media.fields.file.contentType !== "video/mp4");
+      }).map(image => {
         let url = get(image, 'fields.file.url');
         return loadImage(url);
       }));
 
-      return imagesLoaded.then(() => {
+      imagesLoaded.then(() => {
         consideredLoading(false);
-        return study;
       });
+
+      return study;
     }).catch(() => {
       consideredLoading(false);
     });

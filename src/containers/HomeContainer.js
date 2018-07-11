@@ -1,7 +1,7 @@
 import ContainerBase from "lib/ContainerBase";
 import ContentfulData from 'lib/ContentfulData';
 import get from 'utils/get';
-import { setupNav, consideredLoading } from 'state/actions';
+import { setupNav, consideredLoading, setKeyImage } from 'state/actions';
 import Constants from 'lib/Constants';
 
 class HomeContainer extends ContainerBase {
@@ -20,7 +20,14 @@ class HomeContainer extends ContainerBase {
       include: 2,
     }).then(res => {
       consideredLoading(false);
-      return get(res, 'items', [])[0];
+
+      const homePage = get(res, 'items', [])[0];
+
+      setKeyImage(
+        get(homePage, 'fields.images', [])[0]
+      );
+
+      return homePage;
     }).catch(() => {
       consideredLoading(false);
     });

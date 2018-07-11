@@ -4,18 +4,18 @@
   height: 90%;
   transform: translate(0px, 0px);
   opacity: 1;
-  transition: 1200ms cubic-bezier(.08,.46,0,1.01);
+  transition: transform 1200ms cubic-bezier(.08,.46,0,1.01), opacity 1200ms cubic-bezier(.08,.46,0,1.01);
 }
 
 .ImageWrapper.hidden {
   transform: translate(40px, 0px);
   opacity: 0;
+  transition: unset;
 }
 
 .ImageHero {
   margin-right: 100px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: 50% 100%;
+  background-position: 0% 100%;
 }
-
