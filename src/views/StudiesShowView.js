@@ -5,8 +5,6 @@ import ImageSet from 'components/ImageSet';
 import get from 'utils/get';
 import Markdown from 'react-markdown';
 import MediaQuery from 'react-responsive';
-import Image from 'components/Image';
-import Video from 'components/Video';
 
 export default class StudiesShowView extends Component {
   constructor() {
@@ -31,9 +29,12 @@ export default class StudiesShowView extends Component {
     return get(model, 'fields.images', []).map((image, index) => {
       if (!index) {
         return (
-          <div className="ImageHolder">
+          <div className="ImageHolder" key="hero">
             <div className="MobileImage" style={{backgroundImage: `url(${get(image, 'fields.file.url')})`}}></div>
-            <h2 className='Description'>{`${model.fields.role}, ${model.fields.date}`}</h2>
+            <div className='Description'>
+              <h2>{`${model.fields.role}`}</h2>
+              <h2>{`${model.fields.date}`}</h2>
+            </div>
             <h2 className='Title'>{model.fields.name}</h2>
           </div>
         );
@@ -41,7 +42,7 @@ export default class StudiesShowView extends Component {
 
       if (image.fields.file.contentType === 'video/mp4') {
         return (
-          <video muted autoPlay loop>
+          <video muted autoPlay loop key={image.sys.id}>
             <source src={get(image, 'fields.file.url')} type="video/mp4" />
           </video>
         );
@@ -49,6 +50,7 @@ export default class StudiesShowView extends Component {
 
       return (
         <img
+          key={image.sys.id}
           src={get(image, 'fields.file.url')}
           alt={get(image, 'fields.file.fileName', 'Image')}
         />

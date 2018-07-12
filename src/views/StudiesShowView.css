@@ -2,6 +2,10 @@
 
 }
 
+.StudiesShowView.MobileImageGallery {
+  padding: 0 30px;
+}
+
 .StudiesShowView.MobileImageGallery img {
   max-width: 100%;
   padding-bottom: 20px;
@@ -12,7 +16,7 @@
 }
 
 .StudiesShowView.MobileImageGallery .MobileLink {
-  padding: 0px 26px 26px 26px;
+  padding-bottom: 26px;
   width: 100%;
   color: white;
   float: left;
@@ -25,15 +29,18 @@
   height: 100vh;
   top: 0;
   left: 0;
-  padding: 90px 20px;
+  padding: 90px 0px;
   z-index: 2;
 }
 
-.StudiesShowView .ImageHolder h2.Description {
+.StudiesShowView .ImageHolder .Description {
   position: absolute;
   width: 100%;
   right: 0;
+  margin-top: -20px;
   padding-right: 20px;
+}
+.StudiesShowView .ImageHolder .Description h2 {
   text-align: right;
   font-size: 10px;
 }

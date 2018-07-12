@@ -120,10 +120,6 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        {
-          /*<Loader />*/
-        }
-
         <MediaQuery query="(max-width: 700px)">
           <nav className="MobileNav">
             <NavLink to="/">

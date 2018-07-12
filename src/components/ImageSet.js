@@ -39,6 +39,7 @@ export default class ImageSet extends Component {
               style={{
                 width: `${(this.state.midSectionWidth - 100)}px`,
               }}
+              alt="fake"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
             />
           </div>

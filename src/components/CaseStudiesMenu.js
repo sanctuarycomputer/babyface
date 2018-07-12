@@ -68,6 +68,7 @@ export default class CaseStudiesMenu extends Component {
             width: `${(this.state.midSectionWidth - 100)}px`,
           }}
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          alt="fake"
         />
       </div>
     );

@@ -12,6 +12,13 @@
   flex-direction: column;
 }
 
+.AboutViewMobile {
+  padding: 90px 80px 0px 50px;
+}
+.AboutViewMobile a {
+  color: white;
+}
+
 .StudyLink {
 }
 

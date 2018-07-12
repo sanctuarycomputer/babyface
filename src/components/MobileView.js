@@ -3,6 +3,7 @@ import './MobileView.css';
 import get from 'utils/get';
 import Waypoint from 'react-waypoint';
 import { withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 const loadImage = url => {
   const img = new window.Image();
@@ -35,28 +36,30 @@ export default withRouter(class MobileView extends Component {
   }
 
   render() {
-    const currentImage = this.props.content.fields.images[0];
-
     return (
-      <div className="MobileView" onClick={this.didClick}>
+      <div className="MobileView" >
         <div className="NameScroll">
           <Waypoint key={'_HOME'} onEnter={wp => this.itemDidEnter(wp)} topOffset={"50%"}>
             <div className="Item">{""}</div>
           </Waypoint>
           {
             get(this, 'props.content.fields.studies', []).map(study =>
-              <Waypoint key={study.fields.slug} onEnter={wp => this.itemDidEnter(wp, study)} topOffset={"50%"}>
-                <div className="Item">{study.fields.name}</div>
-              </Waypoint>
+              <div className="Item" key={study.fields.slug}>
+                <Waypoint onEnter={wp => this.itemDidEnter(wp, study)}>
+                  <span>{study.fields.name}</span>
+                </Waypoint>
+              </div>
             )
           }
         </div>
-        <div className="ImageHolder">
+        <div className="ImageHolder" onClick={this.didClick}>
           <div className="MobileImage" style={{backgroundImage: `url(${this.state.image.fields.file.url})`}}></div>
         </div>
-        <nav className="MobileBottomNav">
-          <h3>About</h3>
-        </nav>
+        <NavLink to="/about">
+          <nav className="MobileBottomNav">
+            <h3>About</h3>
+          </nav>
+        </NavLink>
       </div>
     );
   }

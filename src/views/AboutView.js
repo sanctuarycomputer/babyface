@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import "./AboutView.css";
 import get from 'utils/get';
 import Markdown from 'react-markdown';
@@ -38,22 +38,25 @@ export default class AboutView extends Component {
     const { hovered } = this.state;
 
     return (
-      <div className="AboutView">
+      <Fragment>
         <MediaQuery query="(max-device-width: 800px)">
-          <h1>Hi</h1>
-          <Markdown source={get(model.aboutPage, 'fields.copy', '')} />
+          <div className="AboutViewMobile">
+            <Markdown source={get(model.aboutPage, 'fields.copy', '')} />
+          </div>
         </MediaQuery>
 
         <MediaQuery query="(min-device-width: 800px)">
-          { hovered ? (
-            <div
-              style={{backgroundImage: `url(${get(hovered.fields.image, 'fields.file.url')})`}}
-              className="AboutKeyImageHero"
-            />
-          ) : null }
-          {renderLinks(model.aboutPage.fields.projects, this.mouseEnterStudy, this.mouseLeaveStudy)}
+          <div className="AboutView">
+              { hovered ? (
+                <div
+                  style={{backgroundImage: `url(${get(hovered.fields.image, 'fields.file.url')})`}}
+                  className="AboutKeyImageHero"
+                />
+              ) : null }
+              {renderLinks(model.aboutPage.fields.projects, this.mouseEnterStudy, this.mouseLeaveStudy)}
+          </div>
         </MediaQuery>
-      </div>
+      </Fragment>
     );
   }
 }
