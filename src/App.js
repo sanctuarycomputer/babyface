@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Nav from 'components/Nav';
 import CaseStudiesMenu from 'components/CaseStudiesMenu';
 import ContentfulData from 'lib/ContentfulData';
+import { NavLink } from 'react-router-dom';
 
 import HomeContainer from 'containers/HomeContainer';
 import AboutContainer from 'containers/AboutContainer';
@@ -10,7 +11,6 @@ import StudiesContainer from 'containers/StudiesContainer';
 import StudiesShowContainer from 'containers/StudiesShowContainer';
 
 import MediaQuery from 'react-responsive';
-import MobileView from 'components/MobileView';
 import loadImage from 'utils/loadImage';
 import get from 'utils/get';
 
@@ -91,6 +91,32 @@ class App extends Component {
     setMidsectionWidth(this.blurbWrapperRef.offsetWidth);
   }
 
+  renderRouter = () => {
+    return (
+      <Switch>
+        <Route
+          path="/"
+          component={HomeContainer}
+          exact
+        />
+        <Route
+          path="/about"
+          component={AboutContainer}
+          exact
+        />
+        <Route
+          path="/studies"
+          component={StudiesContainer}
+          exact
+        />
+        <Route
+          path="/studies/:slug"
+          component={StudiesShowContainer}
+        />
+      </Switch>
+    );
+  }
+
   render() {
     return (
       <Fragment>
@@ -99,9 +125,14 @@ class App extends Component {
         }
 
         <MediaQuery query="(max-width: 700px)">
+          <nav className="MobileNav">
+            <NavLink to="/">
+              <h1>Babyface</h1>
+            </NavLink>
+          </nav>
           {
             this.state.content ?
-            <MobileView content={this.state.content} /> :
+            this.renderRouter() :
             null
           }
         </MediaQuery>
@@ -112,38 +143,17 @@ class App extends Component {
               <div className="MainInner" ref={r => this.mainInnerRef = r}>
                 {
                   this.state.content ?
-                  <Switch>
-                    <Route
-                      path="/"
-                      component={HomeContainer}
-                      exact
-                    />
-                    <Route
-                      path="/about"
-                      component={AboutContainer}
-                      exact
-                    />
-                    <Route
-                      path="/studies"
-                      component={StudiesContainer}
-                      exact
-                    />
-                    <Route
-                      path="/studies/:slug"
-                      component={StudiesShowContainer}
-                    />
-                  </Switch> :
+                  this.renderRouter() :
                   null
                 }
               </div>
             </section>
-
-              <Nav
-                logoWrapperRef={r => this.logoWrapperRef = r}
-                blurbWrapperRef={r => this.blurbWrapperRef = r}
-                content={this.state.content}
-              />
-              <CaseStudiesMenu />
+            <Nav
+              logoWrapperRef={r => this.logoWrapperRef = r}
+              blurbWrapperRef={r => this.blurbWrapperRef = r}
+              content={this.state.content}
+            />
+            <CaseStudiesMenu />
           </div>
         </MediaQuery>
       </Fragment>

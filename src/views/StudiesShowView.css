@@ -1,3 +1,57 @@
 .StudiesShowView {
 
 }
+
+.StudiesShowView.MobileImageGallery img {
+  max-width: 100%;
+  padding-bottom: 20px;
+}
+.StudiesShowView.MobileImageGallery video {
+  max-width: 100%;
+  padding-bottom: 20px;
+}
+
+.StudiesShowView.MobileImageGallery .MobileLink {
+  padding: 0px 26px 26px 26px;
+  width: 100%;
+  color: white;
+  float: left;
+}
+
+.StudiesShowView .ImageHolder {
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  padding: 90px 20px;
+  z-index: 2;
+}
+
+.StudiesShowView .ImageHolder h2.Description {
+  position: absolute;
+  width: 100%;
+  right: 0;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.StudiesShowView .ImageHolder h2.Title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 30px;
+  left: 0;
+  font-size: 12px;
+}
+
+.StudiesShowView .ImageHolder .MobileImage {
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+

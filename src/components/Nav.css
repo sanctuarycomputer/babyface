@@ -47,14 +47,12 @@
   letter-spacing: 0.42px;
 }
 
-.Blurb .DetailsSplit {
-  display: flex;
-}
-
 .Blurb .DetailsSplit a {
   color: white;
 }
 
-.Blurb .DetailsSplit .Secondary {
-  padding-left: 30px;
+.Blurb .DetailsSplit div {
+  width: 50%;
+  display: inline-block;
+  float: left;
 }

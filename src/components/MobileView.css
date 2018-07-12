@@ -42,6 +42,7 @@ nav.MobileNav h1, nav.MobileBottomNav h3 {
   z-index: 3;
   width: 100%;
   position: relative;
+  pointer-events: none;
 }
 
 .NameScroll .Item {

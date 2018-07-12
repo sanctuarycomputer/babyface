@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import './MobileView.css';
 import get from 'utils/get';
 import Waypoint from 'react-waypoint';
+import { withRouter } from 'react-router-dom'
 
 const loadImage = url => {
   const img = new window.Image();
   img.src = url;
 }
 
-
-export default class MobileView extends Component {
+export default withRouter(class MobileView extends Component {
   constructor(props) {
     super(...arguments);
-    this.state = { image: props.content.fields.images[0] }
+    this.state = {
+      image: props.content.fields.images[0],
+      activeStudy: null
+    }
   }
 
   componentWillMount() {
@@ -20,25 +23,29 @@ export default class MobileView extends Component {
     get(this, 'props.content.fields.studies', []).forEach(study => loadImage(study.fields.images[0]));
   }
 
-  itemDidEnter = (waypoint, image) => {
-    this.setState({ image });
+  itemDidEnter = (waypoint, study) => {
+    if (!study) return this.setState({ image: this.props.content.fields.images[0], activeStudy: null });
+    this.setState({ image: study.fields.images[0], activeStudy: study });
+  }
+
+  didClick = (e) => {
+    e.preventDefault();
+    if (!this.state.activeStudy) return;
+    this.props.history.push(`/studies/${this.state.activeStudy.fields.slug}`);
   }
 
   render() {
     const currentImage = this.props.content.fields.images[0];
 
     return (
-      <div className="MobileView">
-        <nav className="MobileNav">
-          <h1>Babyface</h1>
-        </nav>
+      <div className="MobileView" onClick={this.didClick}>
         <div className="NameScroll">
-          <Waypoint key={'_HOME'} onEnter={wp => this.itemDidEnter(wp, currentImage)} topOffset={"50%"}>
+          <Waypoint key={'_HOME'} onEnter={wp => this.itemDidEnter(wp)} topOffset={"50%"}>
             <div className="Item">{""}</div>
           </Waypoint>
           {
             get(this, 'props.content.fields.studies', []).map(study =>
-              <Waypoint key={study.fields.slug} onEnter={wp => this.itemDidEnter(wp, study.fields.images[0])} topOffset={"50%"}>
+              <Waypoint key={study.fields.slug} onEnter={wp => this.itemDidEnter(wp, study)} topOffset={"50%"}>
                 <div className="Item">{study.fields.name}</div>
               </Waypoint>
             )
@@ -53,5 +60,5 @@ export default class MobileView extends Component {
       </div>
     );
   }
-};
+});
 
