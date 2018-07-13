@@ -42,7 +42,7 @@ export default class StudiesShowView extends Component {
 
       if (image.fields.file.contentType === 'video/mp4') {
         return (
-          <video muted autoPlay loop key={image.sys.id}>
+          <video muted autoPlay loop key={image.sys.id} playsInline>
             <source src={get(image, 'fields.file.url')} type="video/mp4" />
           </video>
         );

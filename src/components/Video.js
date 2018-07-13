@@ -7,7 +7,7 @@ export default class Image extends Component {
     let className = 'Video';
 
     return (
-      <video className={className} muted autoPlay loop>
+      <video className={className} muted autoPlay loop playsInline>
         <source src={src} type="video/mp4" />
       </video>
     )
