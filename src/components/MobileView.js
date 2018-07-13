@@ -14,7 +14,7 @@ export default withRouter(class MobileView extends Component {
   constructor(props) {
     super(...arguments);
     this.state = {
-      image: props.content.fields.images[0],
+      image: props.content.fields.studies[0].fields.images[0],
       activeStudy: null
     }
   }
@@ -39,9 +39,7 @@ export default withRouter(class MobileView extends Component {
     return (
       <div className="MobileView" >
         <div className="NameScroll">
-          <Waypoint key={'_HOME'} onEnter={wp => this.itemDidEnter(wp)} topOffset={"50%"}>
-            <div className="Item">{""}</div>
-          </Waypoint>
+          <div className="Item">{""}</div>
           {
             get(this, 'props.content.fields.studies', []).map(study =>
               <div className="Item" key={study.fields.slug}>

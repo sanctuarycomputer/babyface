@@ -54,7 +54,7 @@ nav.MobileBottomNav h3 {
   height: 101vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   font-weight: 900;
   font-size: 1.9rem;
   text-transform: uppercase;

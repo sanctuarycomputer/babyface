@@ -41,7 +41,7 @@ export default class AboutView extends Component {
       <Fragment>
         <MediaQuery query="(max-device-width: 800px)">
           <div className="AboutViewMobile">
-            <Markdown source={get(model.aboutPage, 'fields.copy', '')} />
+            <Markdown source={get(model.aboutPage, 'fields.copy', '')} escapeHtml={false} />
           </div>
         </MediaQuery>
 
