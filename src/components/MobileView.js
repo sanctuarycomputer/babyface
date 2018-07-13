@@ -15,7 +15,7 @@ export default withRouter(class MobileView extends Component {
     super(...arguments);
     this.state = {
       image: props.content.fields.studies[0].fields.images[0],
-      activeStudy: null
+      activeStudy: props.content.fields.studies[0]
     }
   }
 
@@ -52,6 +52,10 @@ export default withRouter(class MobileView extends Component {
         </div>
         <div className="ImageHolder" onClick={this.didClick}>
           <div className="MobileImage" style={{backgroundImage: `url(${this.state.image.fields.file.url})`}}></div>
+          <div className='Description'>
+            <h2>{`${this.state.activeStudy.fields.role}`}</h2>
+            <h2>{`${this.state.activeStudy.fields.date}`}</h2>
+          </div>
         </div>
         <NavLink to="/about">
           <nav className="MobileBottomNav">
