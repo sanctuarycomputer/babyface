@@ -5,6 +5,7 @@ export const SETUP_NAV = 'SETUP_NAV';
 export const SET_MIDSECTION_WIDTH = 'SET_MIDSECTION_WIDTH';
 export const SET_PADDING_WIDTH = 'SET_PADDING_WIDTH';
 export const TOGGLE_CASE_STUDIES_MENU = 'TOGGLE_CASE_STUDIES_MENU';
+export const CLOSE_CASE_STUDIES_MENU = 'CLOSE_CASE_STUDIES_MENU';
 export const LOAD_STUDIES = 'LOAD_STUDIES';
 export const LOAD_HOME = 'LOAD_HOME';
 export const CONSIDERED_LOADING = 'CONSIDERED_LOADING';
@@ -41,6 +42,12 @@ export const setPaddingWidth = payload => {
 export const toggleCaseStudiesMenu = () => {
   return Store.dispatch({
     type: TOGGLE_CASE_STUDIES_MENU
+  });
+}
+
+export const closeCaseStudiesMenu = () => {
+  return Store.dispatch({
+    type: CLOSE_CASE_STUDIES_MENU,
   });
 }
 

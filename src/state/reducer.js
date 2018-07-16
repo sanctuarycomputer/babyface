@@ -3,6 +3,7 @@ import {
   SET_MIDSECTION_WIDTH,
   SET_PADDING_WIDTH,
   TOGGLE_CASE_STUDIES_MENU,
+  CLOSE_CASE_STUDIES_MENU,
   LOAD_STUDIES,
   LOAD_HOME,
   CONSIDERED_LOADING,
@@ -35,6 +36,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, paddingWidth: action.payload }
     case TOGGLE_CASE_STUDIES_MENU:
       return { ...state, showCaseStudiesMenu: !state.showCaseStudiesMenu }
+    case CLOSE_CASE_STUDIES_MENU:
+      return { ...state, showCaseStudiesMenu: false }
     case LOAD_HOME:
       return { ...state, homePage: action.payload }
     case LOAD_STUDIES:

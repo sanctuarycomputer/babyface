@@ -43,13 +43,13 @@
 }
 
 .CaseStudiesFauxNav {
-  height: 100px;
+  height: 110px;
   width: 100%;
   display: flex;
   flex-direction: row;
   position: fixed;
   bottom: 0;
-  padding-top: 16px;
+  padding-top: 20px;
 }
 
 .CaseStudiesFauxNav .Logo {

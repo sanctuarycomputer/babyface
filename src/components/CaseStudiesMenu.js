@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Store from 'state/Store';
-import { toggleCaseStudiesMenu } from 'state/actions';
+import { toggleCaseStudiesMenu, closeCaseStudiesMenu } from 'state/actions';
 import './CaseStudiesMenu.css';
 import get from 'utils/get';
 
@@ -36,6 +36,19 @@ export default class CaseStudiesMenu extends Component {
         studies: studies.filter(study => get(study, 'fields.featured', false))
       });
     });
+  }
+
+  componentDidMount() {
+    document.onkeydown = (evt) => {
+      evt = evt || window.event;
+      let isEscape = false;
+      if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+      } else {
+        isEscape = (evt.keyCode === 27);
+      }
+      if (isEscape && this.state.active) toggleCaseStudiesMenu()
+    };
   }
 
   renderKeyImage = () => {
@@ -97,7 +110,7 @@ export default class CaseStudiesMenu extends Component {
     if (this.state.active) classes = `${classes} active`;
 
     return (
-      <div className={classes}>
+      <div className={classes} onClick={closeCaseStudiesMenu}>
         <div className="CaseStudiesInner" style={{ paddingLeft: this.state.paddingWidth }}>
           <div className="CaseStudiesMenuImage" style={{ width: this.state.midSectionWidth }}>
             {this.renderKeyImage()}
@@ -111,7 +124,7 @@ export default class CaseStudiesMenu extends Component {
           <div className="Logo"></div>
           <div className="Blurb"></div>
           <div className="Links">
-            <div onClick={toggleCaseStudiesMenu}>
+            <div>
               <h2>Case Studies</h2>
             </div>
           </div>
