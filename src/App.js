@@ -77,8 +77,8 @@ class App extends Component {
 
   componentDidMount() {
     this.syncSizes();
-    window.addEventListener("resize", this.syncSizes);
-    window.addEventListener("wheel", this.didScroll);
+    window.addEventListener("resize", this.syncSizes, { passive: false });
+    window.addEventListener("wheel", this.didScroll, { passive: false });
   }
 
   syncSizes = () => {
