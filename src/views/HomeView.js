@@ -6,6 +6,14 @@ import MediaQuery from 'react-responsive';
 import MobileView from 'components/MobileView';
 
 export default class HomeView extends Component {
+  componentWillMount() {
+    window.SET_ALLOW_SCROLLING(false);
+  }
+
+  componentWillUnmount() {
+    window.SET_ALLOW_SCROLLING(true);
+  }
+
   render() {
     const { model } = this.props;
     if (model.isError) return <h1>Error</h1>

@@ -32,9 +32,24 @@ class App extends Component {
     this.state = { content: null };
 
     this.prevScrollDelta = { x: 0, y: 0 };
+
+    window.ALLOW_SCROLLING = true;
+    window.SET_ALLOW_SCROLLING = allow => {
+      window.ALLOW_SCROLLING = allow;
+      if (allow) {
+        if (this.mainInnerRef) {
+          this.mainInnerRef.style.overflow = 'auto';
+        }
+      } else {
+        if (this.mainInnerRef) {
+          this.mainInnerRef.style.overflow = 'hidden';
+        }
+      }
+    };
   }
 
   didScroll = e => {
+    if (!window.ALLOW_SCROLLING) return;
     const mainInner = document.querySelector(".MainInner");
 
     if (mainInner) {
